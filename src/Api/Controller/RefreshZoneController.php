@@ -27,6 +27,11 @@ class RefreshZoneController implements RequestHandlerInterface
         $actor->assertAdmin();
 
         $response = Utils::sendApiRequest('', [], false);
+
+        if ($response->isEmpty()) {
+            throw new ValidationException(['cloudflare' => 'Missing API key.']);
+        }
+
         $host = $request->getUri()->getHost();
 
         if (!$response['success']) {
