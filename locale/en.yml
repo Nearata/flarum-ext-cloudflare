@@ -3,3 +3,4 @@ nearata-cloudflare:
     settings:
       api_key: API Key
       api_key_help: "Follow the guide <strong>{url}</strong> to create an API Token"
+      refresh_zone_button_label: Refresh Zone ID
