@@ -1,0 +1,43 @@
+{
+    "name": "nearata/flarum-ext-cloudflare",
+    "description": "Cloudflare integration.",
+    "keywords": [
+        "flarum",
+        "cloudflare"
+    ],
+    "type": "flarum-extension",
+    "license": "Unlicense",
+    "require": {
+        "flarum/core": "^1.0",
+        "illuminate/http": "^8.0"
+    },
+    "authors": [
+        {
+            "name": "Nearata",
+            "email": "nearata@protonmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Nearata/flarum-ext-cloudflare/issues",
+        "source": "https://github.com/Nearata/flarum-ext-cloudflare"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nearata\\Cloudflare\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Cloudflare",
+            "category": "feature",
+            "icon": {
+                "name": "fab fa-cloudflare",
+                "color": "#ffffff",
+                "backgroundColor": "#ff6633"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

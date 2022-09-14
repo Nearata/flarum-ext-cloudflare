@@ -1,0 +1,5 @@
+nearata-cloudflare:
+  admin:
+    settings:
+      api_key: API Key
+      api_key_help: "Follow the guide <strong>{url}</strong> to create an API Token"
