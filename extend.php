@@ -5,7 +5,7 @@ namespace Nearata\Cloudflare;
 use Flarum\Extend;
 use Flarum\Foundation\Event\ClearingCache;
 use Nearata\Cloudflare\Api\Controller\RefreshZoneController;
-use Nearata\Cloudflare\Foundation\Listener\ClearingCacheListener;
+use Nearata\Cloudflare\Listener\ClearingCacheListener;
 use Nearata\Cloudflare\Provider\CloudflareServiceProvider;
 
 return [

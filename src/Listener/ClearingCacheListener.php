@@ -1,6 +1,6 @@
 <?php
 
-namespace Nearata\Cloudflare\Foundation\Listener;
+namespace Nearata\Cloudflare\Listener;
 
 use Flarum\Foundation\Event\ClearingCache;
 use Illuminate\Http\Client\Factory;
