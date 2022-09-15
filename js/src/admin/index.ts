@@ -53,6 +53,7 @@ app.initializers.add("nearata-cloudflare", () => {
                     },
                     trans("refresh_zone_button_label")
                 ),
+                m(".helpText", trans("refresh_zone_help")),
             ]);
         });
 });
