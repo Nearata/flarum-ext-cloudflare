@@ -3,12 +3,12 @@
 namespace Nearata\Cloudflare\Foundation\Listener;
 
 use Flarum\Foundation\Event\ClearingCache;
-use Nearata\Cloudflare\Utils;
+use Illuminate\Http\Client\Factory;
 
 class ClearingCacheListener
 {
     public function handle(ClearingCache $event)
     {
-        Utils::sendApiRequest('/purge-cache', ['purge_everything' => true]);
+        Factory::cloudflare()->post('/purge_cache', ['purge_everything' => true]);
     }
 }

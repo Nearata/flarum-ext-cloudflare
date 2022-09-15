@@ -6,6 +6,7 @@ use Flarum\Extend;
 use Flarum\Foundation\Event\ClearingCache;
 use Nearata\Cloudflare\Api\Controller\RefreshZoneController;
 use Nearata\Cloudflare\Foundation\Listener\ClearingCacheListener;
+use Nearata\Cloudflare\Provider\CloudflareServiceProvider;
 
 return [
     (new Extend\Frontend('admin'))
@@ -18,5 +19,8 @@ return [
         ->listen(ClearingCache::class, ClearingCacheListener::class),
 
     (new Extend\Routes('api'))
-        ->patch('/nearata/cloudflare/refreshZone', 'nearata.cloudflare.refresh-zone', RefreshZoneController::class)
+        ->patch('/nearata/cloudflare/refreshZone', 'nearata.cloudflare.refresh-zone', RefreshZoneController::class),
+
+    (new Extend\ServiceProvider)
+        ->register(CloudflareServiceProvider::class)
 ];
