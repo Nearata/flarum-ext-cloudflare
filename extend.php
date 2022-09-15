@@ -4,8 +4,10 @@ namespace Nearata\Cloudflare;
 
 use Flarum\Extend;
 use Flarum\Foundation\Event\ClearingCache;
+use Flarum\Settings\Event\Saving as SettingsSaving;
 use Nearata\Cloudflare\Api\Controller\RefreshZoneController;
 use Nearata\Cloudflare\Listener\ClearingCacheListener;
+use Nearata\Cloudflare\Listener\SettingsSavingListener;
 use Nearata\Cloudflare\Provider\CloudflareServiceProvider;
 
 return [
@@ -22,5 +24,8 @@ return [
         ->patch('/nearata/cloudflare/refreshZone', 'nearata.cloudflare.refresh-zone', RefreshZoneController::class),
 
     (new Extend\ServiceProvider)
-        ->register(CloudflareServiceProvider::class)
+        ->register(CloudflareServiceProvider::class),
+
+    (new Extend\Event)
+        ->listen(SettingsSaving::class, SettingsSavingListener::class)
 ];

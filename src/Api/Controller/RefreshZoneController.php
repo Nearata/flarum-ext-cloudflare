@@ -63,6 +63,6 @@ class RefreshZoneController implements RequestHandlerInterface
 
         $this->settings->set('nearata-cloudflare.zone-id', $zoneId);
 
-        return new EmptyResponse(200);
+        return new EmptyResponse();
     }
 }
