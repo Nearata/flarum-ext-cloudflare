@@ -19,6 +19,24 @@ app.initializers.add("nearata-cloudflare", () => {
                 url: "https://developers.cloudflare.com/api/tokens/create",
             }),
         })
+        .registerSetting({
+            setting: "nearata-cloudflare.security-level",
+            type: "select",
+            label: trans("security_level_label"),
+            options: {
+                off: trans("security_level_options.off"),
+                essentially_off: trans(
+                    "security_level_options.essentially_off"
+                ),
+                low: trans("security_level_options.low"),
+                medium: trans("security_level_options.medium"),
+                high: trans("security_level_options.high"),
+                under_attack: trans("security_level_options.under_attack"),
+            },
+            help: trans("security_level_help", {
+                url: "https://support.cloudflare.com/hc/en-us/articles/200170056",
+            }),
+        })
         .registerSetting(function () {
             return m(".Form-group", [
                 m(
@@ -55,23 +73,5 @@ app.initializers.add("nearata-cloudflare", () => {
                 ),
                 m(".helpText", trans("refresh_zone_help")),
             ]);
-        })
-        .registerSetting({
-            setting: "nearata-cloudflare.security-level",
-            type: "select",
-            label: trans("security_level_label"),
-            options: {
-                off: trans("security_level_options.off"),
-                essentially_off: trans(
-                    "security_level_options.essentially_off"
-                ),
-                low: trans("security_level_options.low"),
-                medium: trans("security_level_options.medium"),
-                high: trans("security_level_options.high"),
-                under_attack: trans("security_level_options.under_attack"),
-            },
-            help: trans("security_level_help", {
-                url: "https://support.cloudflare.com/hc/en-us/articles/200170056",
-            }),
         });
 });
