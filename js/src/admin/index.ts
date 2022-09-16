@@ -1,5 +1,6 @@
 import app from "flarum/admin/app";
 import Button from "flarum/common/components/Button";
+import extractText from "flarum/common/utils/extractText";
 
 const trans = (key: string, params = {}) => {
     return app.translator.trans(
@@ -37,6 +38,27 @@ app.initializers.add("nearata-cloudflare", () => {
                 url: "https://support.cloudflare.com/hc/en-us/articles/200170056",
             }),
         })
+        .registerSetting(() => {
+            return m("h2", trans("minify_setting.section_title"));
+        })
+        .registerSetting({
+            setting: "nearata-cloudflare.minify-css",
+            type: "checkbox",
+            label: trans("minify_setting.css"),
+            help: trans("minify_setting.css_help"),
+        })
+        .registerSetting({
+            setting: "nearata-cloudflare.minify-html",
+            type: "checkbox",
+            label: trans("minify_setting.html"),
+            help: trans("minify_setting.html_help"),
+        })
+        .registerSetting({
+            setting: "nearata-cloudflare.minify-js",
+            type: "checkbox",
+            label: trans("minify_setting.js"),
+            help: trans("minify_setting.js_help"),
+        })
         .registerSetting(function () {
             return m(".Form-group", [
                 m(
@@ -46,6 +68,10 @@ app.initializers.add("nearata-cloudflare", () => {
                         loading: this.loading,
                         icon: this.success ? "fas fa-check" : "",
                         onclick: () => {
+                            if (!confirm(extractText(trans("confirm_text")))) {
+                                return;
+                            }
+
                             this.loading = true;
                             this.success = false;
 

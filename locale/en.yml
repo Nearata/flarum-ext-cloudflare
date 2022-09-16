@@ -14,3 +14,12 @@ nearata-cloudflare:
         high: High
         under_attack: Under Attack
       security_level_help: For more information, look at the link <strong>{url}</strong>
+      minify_setting:
+        section_title: Minify Setting
+        css: Minify CSS
+        css_help: Automatically minify all CSS files for your website.
+        html: Minify HTML
+        html_help: Automatically minify all HTML files for your website.
+        js: Minify JS
+        js_help: Automatically minify all JavaScript files for your website.
+      confirm_text: Are you sure?

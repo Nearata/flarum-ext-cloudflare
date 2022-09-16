@@ -18,14 +18,12 @@ return [
     new Extend\Locales(__DIR__.'/locale'),
 
     (new Extend\Event)
-        ->listen(ClearingCache::class, ClearingCacheListener::class),
+        ->listen(ClearingCache::class, ClearingCacheListener::class)
+        ->listen(SettingsSaving::class, SettingsSavingListener::class),
 
     (new Extend\Routes('api'))
         ->patch('/nearata/cloudflare/refreshZone', 'nearata.cloudflare.refresh-zone', RefreshZoneController::class),
 
     (new Extend\ServiceProvider)
-        ->register(CloudflareServiceProvider::class),
-
-    (new Extend\Event)
-        ->listen(SettingsSaving::class, SettingsSavingListener::class)
+        ->register(CloudflareServiceProvider::class)
 ];
