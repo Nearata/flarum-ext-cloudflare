@@ -9,6 +9,7 @@ class ClearingCacheListener
 {
     public function handle(ClearingCache $event)
     {
-        Factory::cloudflare()->post('/purge_cache', ['purge_everything' => true]);
+        Factory::cloudflareZoned()
+            ->post('/purge_cache', ['purge_everything' => true]);
     }
 }

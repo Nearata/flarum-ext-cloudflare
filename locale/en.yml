@@ -4,7 +4,7 @@ nearata-cloudflare:
       api_key: API Key
       api_key_help: "Follow the guide <strong>{url}</strong> to create an API Token"
       refresh_zone_button_label: Refresh Zone ID
-      refresh_zone_help: Click the above button to verify the API key and to get/refresh the Zone ID
+      refresh_zone_help: Click the above button <strong>only</strong> if the domain name has changed.
       security_level_label: Security Level
       security_level_options:
         off: "Off"
@@ -13,3 +13,4 @@ nearata-cloudflare:
         medium: Medium
         high: High
         under_attack: Under Attack
+      security_level_help: For more information, look at the link <strong>{url}</strong>

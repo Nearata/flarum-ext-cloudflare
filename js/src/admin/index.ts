@@ -24,7 +24,7 @@ app.initializers.add("nearata-cloudflare", () => {
                 m(
                     Button,
                     {
-                        className: "Button",
+                        className: "Button Button--danger",
                         loading: this.loading,
                         icon: this.success ? "fas fa-check" : "",
                         onclick: () => {
@@ -70,6 +70,8 @@ app.initializers.add("nearata-cloudflare", () => {
                 high: trans("security_level_options.high"),
                 under_attack: trans("security_level_options.under_attack"),
             },
-            default: "medium",
+            help: trans("security_level_help", {
+                url: "https://support.cloudflare.com/hc/en-us/articles/200170056",
+            }),
         });
 });

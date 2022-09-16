@@ -12,12 +12,21 @@ class CloudflareServiceProvider extends AbstractServiceProvider
         /** @var \Flarum\Settings\SettingsRepositoryInterface */
         $settings = $this->container->make('flarum.settings');
 
-        $token = $settings->get('nearata-cloudflare.api-key');
-        $zone = $settings->get('nearata-cloudflare.zone-id');
+        $oldToken = $settings->get('nearata-cloudflare.api-key');
+        $oldZone = $settings->get('nearata-cloudflare.zone-id');
 
-        Factory::macro('cloudflare', function () use ($token, $zone) {
+        Factory::macro('cloudflare', function ($newToken = null) use ($oldToken) {
             return (new Factory())
-                ->withToken($token)
+                ->withToken($newToken ?? $oldToken)
+                ->contentType('application/json')
+                ->baseUrl('https://api.cloudflare.com/client/v4');
+        });
+
+        Factory::macro('cloudflareZoned', function ($newToken = null, $newZone = null) use ($oldToken, $oldZone) {
+            $zone = $newZone ?? $oldZone;
+
+            return (new Factory())
+                ->withToken($newToken ?? $oldToken)
                 ->contentType('application/json')
                 ->baseUrl("https://api.cloudflare.com/client/v4/zones/$zone");
         });
