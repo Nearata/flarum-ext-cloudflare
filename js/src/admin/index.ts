@@ -1,5 +1,6 @@
 import app from "flarum/admin/app";
 import Button from "flarum/common/components/Button";
+import Link from "flarum/common/components/Link";
 import extractText from "flarum/common/utils/extractText";
 
 const trans = (key: string, params = {}) => {
@@ -17,7 +18,11 @@ app.initializers.add("nearata-cloudflare", () => {
             type: "password",
             label: trans("api_key"),
             help: trans("api_key_help", {
-                url: "https://developers.cloudflare.com/api/tokens/create",
+                url: m(Link, {
+                    external: true,
+                    target: "_blank",
+                    href: "https://developers.cloudflare.com/api/tokens/create",
+                }),
             }),
         })
         .registerSetting({
@@ -35,11 +40,27 @@ app.initializers.add("nearata-cloudflare", () => {
                 under_attack: trans("security_level_options.under_attack"),
             },
             help: trans("security_level_help", {
-                url: "https://support.cloudflare.com/hc/en-us/articles/200170056",
+                url: m(Link, {
+                    external: true,
+                    target: "_blank",
+                    href: "https://support.cloudflare.com/hc/en-us/articles/200170056",
+                }),
             }),
         })
         .registerSetting(() => {
-            return m("h2", trans("minify_setting.section_title"));
+            return m(".Form-group", [
+                m("h2", trans("minify_setting.section_title")),
+                m(
+                    ".helpText",
+                    trans("minify_setting.help", {
+                        url: m(Link, {
+                            external: true,
+                            target: "_blank",
+                            href: "https://support.cloudflare.com/hc/en-us/articles/200168196",
+                        }),
+                    })
+                ),
+            ]);
         })
         .registerSetting({
             setting: "nearata-cloudflare.minify-css",

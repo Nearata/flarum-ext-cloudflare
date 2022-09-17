@@ -2,7 +2,7 @@ nearata-cloudflare:
   admin:
     settings:
       api_key: API Key
-      api_key_help: "Follow the guide <strong>{url}</strong> to create an API Token"
+      api_key_help: Follow the guide <strong><url>Creating API Tokens</url></strong> to create an API Token.
       refresh_zone_button_label: Refresh Zone ID
       refresh_zone_help: Click the above button <strong>only</strong> if the domain name has changed.
       security_level_label: Security Level
@@ -13,9 +13,10 @@ nearata-cloudflare:
         medium: Medium
         high: High
         under_attack: Under Attack
-      security_level_help: For more information, look at the link <strong>{url}</strong>
+      security_level_help: Refer to <strong><url>this</url></strong> article for more information.
       minify_setting:
         section_title: Minify Setting
+        help: Automatically minify certain assets for your website. Refer to <strong><url>this</url></strong> article for more information.
         css: Minify CSS
         css_help: Automatically minify all CSS files for your website.
         html: Minify HTML
