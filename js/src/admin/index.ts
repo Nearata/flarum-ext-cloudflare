@@ -80,6 +80,48 @@ app.initializers.add("nearata-cloudflare", () => {
             label: trans("minify_setting.js"),
             help: trans("minify_setting.js_help"),
         })
+        .registerSetting({
+            setting: "nearata-cloudflare.browser-cache-ttl",
+            type: "select",
+            label: trans("browser_cache_ttl_label"),
+            options: {
+                "0": "0",
+                "30": "30",
+                "60": "60",
+                "120": "120",
+                "300": "300",
+                "1200": "1200",
+                "1800": "1800",
+                "3600": "3600",
+                "7200": "7200",
+                "10800": "10800",
+                "14400": "14400",
+                "18000": "18000",
+                "28800": "28800",
+                "43200": "43200",
+                "57600": "57600",
+                "72000": "72000",
+                "86400": "86400",
+                "172800": "172800",
+                "259200": "259200",
+                "345600": "345600",
+                "432000": "432000",
+                "691200": "691200",
+                "1382400": "1382400",
+                "2073600": "2073600",
+                "2678400": "2678400",
+                "5356800": "5356800",
+                "16070400": "16070400",
+                "31536000": "31536000",
+            },
+            help: trans("browser_cache_ttl_help", {
+                url: m(Link, {
+                    external: true,
+                    target: "_blank",
+                    href: "https://developers.cloudflare.com/cache/about/edge-browser-cache-ttl#browser-cache-ttl",
+                }),
+            }),
+        })
         .registerSetting(function () {
             return m(".Form-group", [
                 m(

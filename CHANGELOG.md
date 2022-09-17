@@ -8,5 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Ability to clear Cloudflare cache when forum cache is cleared
-- Ability to change Cloudflare Security Level
+- Ability to modify Cloudflare Security Level
 - Ability to toggle auto minify for css, html and js
+- Ability to modify Browser Cache TTL

@@ -32,6 +32,7 @@ class SettingsSavingListener
         $minifyCss = Arr::get($event->settings, 'nearata-cloudflare.minify-css');
         $minifyHtml = Arr::get($event->settings, 'nearata-cloudflare.minify-html');
         $minifyJs = Arr::get($event->settings, 'nearata-cloudflare.minify-js');
+        $browserCacheTtl = Arr::get($event->settings, 'nearata-cloudflare.browser-cache-ttl');
 
         if (!empty($token)) {
             $this->token = $token;
@@ -52,6 +53,10 @@ class SettingsSavingListener
 
         if (!empty($minifyJs)) {
             $this->autoMinify('js', $minifyJs);
+        }
+
+        if (!empty($browserCacheTtl)) {
+            $this->updateBrowserCacheTtl($browserCacheTtl);
         }
     }
 
@@ -86,6 +91,15 @@ class SettingsSavingListener
         /** @var Response */
         $response = Factory::cloudflareZoned($this->token, $this->zone)
             ->patch('/settings/minify', [$key => $value]);
+
+        $response->onError([$this, 'onError']);
+    }
+
+    private function updateBrowserCacheTtl(string $value): void
+    {
+        /** @var Response */
+        $response = Factory::cloudflareZoned($this->token, $this->zone)
+            ->patch('/settings/browser_cache_ttl', ["value" => intval($value)]);
 
         $response->onError([$this, 'onError']);
     }

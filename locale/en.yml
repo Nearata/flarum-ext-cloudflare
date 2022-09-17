@@ -23,4 +23,11 @@ nearata-cloudflare:
         html_help: Automatically minify all HTML files for your website.
         js: Minify JS
         js_help: Automatically minify all JavaScript files for your website.
+      browser_cache_ttl_label: Browser Cache TTL
+      browser_cache_ttl_help: |
+        Browser Cache TTL (in seconds) specifies how long Cloudflare-cached resources will remain on your visitors' computers.
+
+        Cloudflare will honor any larger times specified by your server.
+
+        Refer to <strong><url>this article</url></strong> for more information.
       confirm_text: Are you sure?
