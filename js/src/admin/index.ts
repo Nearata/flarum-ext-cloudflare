@@ -1,6 +1,9 @@
+import DevelopmentWarningWidget from "./components/DevelopmentWarningWidget";
 import app from "flarum/admin/app";
+import DashboardPage from "flarum/admin/components/DashboardPage";
 import Button from "flarum/common/components/Button";
 import Link from "flarum/common/components/Link";
+import { extend } from "flarum/common/extend";
 import extractText from "flarum/common/utils/extractText";
 
 const trans = (key: string, params = {}) => {
@@ -11,6 +14,19 @@ const trans = (key: string, params = {}) => {
 };
 
 app.initializers.add("nearata-cloudflare", () => {
+    extend(DashboardPage.prototype, "availableWidgets", function (items) {
+        const developmentMode =
+            app.data.settings["nearata-cloudflare.development-mode"];
+
+        if (developmentMode === "1") {
+            items.add(
+                "nearataCloudflareDevelopment",
+                m(DevelopmentWarningWidget),
+                100
+            );
+        }
+    });
+
     app.extensionData
         .for("nearata-cloudflare")
         .registerSetting({
@@ -39,7 +55,7 @@ app.initializers.add("nearata-cloudflare", () => {
                 high: trans("security_level_options.high"),
                 under_attack: trans("security_level_options.under_attack"),
             },
-            help: trans("security_level_help", {
+            help: trans("refer_to", {
                 url: m(Link, {
                     external: true,
                     target: "_blank",
@@ -52,7 +68,7 @@ app.initializers.add("nearata-cloudflare", () => {
                 m("h2", trans("minify_setting.section_title")),
                 m(
                     ".helpText",
-                    trans("minify_setting.help", {
+                    trans("refer_to", {
                         url: m(Link, {
                             external: true,
                             target: "_blank",
@@ -114,11 +130,23 @@ app.initializers.add("nearata-cloudflare", () => {
                 "16070400": "16070400",
                 "31536000": "31536000",
             },
-            help: trans("browser_cache_ttl_help", {
+            help: trans("refer_to", {
                 url: m(Link, {
                     external: true,
                     target: "_blank",
                     href: "https://developers.cloudflare.com/cache/about/edge-browser-cache-ttl#browser-cache-ttl",
+                }),
+            }),
+        })
+        .registerSetting({
+            setting: "nearata-cloudflare.development-mode",
+            type: "checkbox",
+            label: "Development Mode",
+            help: trans("refer_to", {
+                url: m(Link, {
+                    external: true,
+                    target: "_blank",
+                    href: "https://api.cloudflare.com/#zone-settings-change-development-mode-setting",
                 }),
             }),
         })

@@ -13,10 +13,8 @@ nearata-cloudflare:
         medium: Medium
         high: High
         under_attack: Under Attack
-      security_level_help: Refer to <strong><url>this</url></strong> article for more information.
       minify_setting:
         section_title: Minify Setting
-        help: Automatically minify certain assets for your website. Refer to <strong><url>this</url></strong> article for more information.
         css: Minify CSS
         css_help: Automatically minify all CSS files for your website.
         html: Minify HTML
@@ -24,10 +22,5 @@ nearata-cloudflare:
         js: Minify JS
         js_help: Automatically minify all JavaScript files for your website.
       browser_cache_ttl_label: Browser Cache TTL
-      browser_cache_ttl_help: |
-        Browser Cache TTL (in seconds) specifies how long Cloudflare-cached resources will remain on your visitors' computers.
-
-        Cloudflare will honor any larger times specified by your server.
-
-        Refer to <strong><url>this article</url></strong> for more information.
+      refer_to: Refer to <strong><url>this page</url></strong> for more information.
       confirm_text: Are you sure?

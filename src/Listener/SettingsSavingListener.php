@@ -2,6 +2,7 @@
 
 namespace Nearata\Cloudflare\Listener;
 
+use Carbon\Carbon;
 use Flarum\Foundation\Config;
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\Event\Saving;
@@ -33,6 +34,7 @@ class SettingsSavingListener
         $minifyHtml = Arr::get($event->settings, 'nearata-cloudflare.minify-html');
         $minifyJs = Arr::get($event->settings, 'nearata-cloudflare.minify-js');
         $browserCacheTtl = Arr::get($event->settings, 'nearata-cloudflare.browser-cache-ttl');
+        $developmentMode = Arr::get($event->settings, 'nearata-cloudflare.development-mode');
 
         if (!empty($token)) {
             $this->token = $token;
@@ -57,6 +59,10 @@ class SettingsSavingListener
 
         if (!empty($browserCacheTtl)) {
             $this->updateBrowserCacheTtl($browserCacheTtl);
+        }
+
+        if (!empty($developmentMode)) {
+            $this->updateDevelopmentMode($developmentMode);
         }
     }
 
@@ -102,6 +108,22 @@ class SettingsSavingListener
             ->patch('/settings/browser_cache_ttl', ["value" => intval($value)]);
 
         $response->onError([$this, 'onError']);
+    }
+
+    private function updateDevelopmentMode(bool $value): void
+    {
+        $value = $value ? 'on' : 'off';
+
+        /** @var Response */
+        $response = Factory::cloudflareZoned($this->token, $this->zone)
+            ->patch('/settings/development_mode', ['value' => $value]);
+
+        $response->onError([$this, 'onError']);
+
+        if ($value) {
+            $now = Carbon::now()->getTimestamp();
+            $this->settings->set('nearata-cloudflare.development-mode-time', $now);
+        }
     }
 
     public function onError(Response $response): void
