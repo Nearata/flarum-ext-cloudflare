@@ -30,5 +30,4 @@ return [
 
     (new Extend\Middleware('admin'))
         ->add(CheckDevelopmentMode::class)
-
 ];
