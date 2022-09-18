@@ -1,3 +1,4 @@
+import app from "flarum/admin/app";
 import DashboardWidget from "flarum/admin/components/DashboardWidget";
 import Alert from "flarum/common/components/Alert";
 
@@ -11,7 +12,9 @@ export default class DevelopmentWarningWidget extends DashboardWidget {
             m(Alert, {
                 type: "warning",
                 dismissible: false,
-                title: "Cloudflare Development Mode active",
+                title: app.translator.trans(
+                    "nearata-cloudflare.admin.development_mode_widget.title"
+                ),
                 icon: "fas fa-exclamation-triangle",
             }),
         ];

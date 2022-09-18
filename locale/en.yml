@@ -1,5 +1,7 @@
 nearata-cloudflare:
   admin:
+    development_mode_widget:
+      title: Cloudflare Development Mode active
     settings:
       api_key: API Key
       api_key_help: Follow the guide <strong><url>Creating API Tokens</url></strong> to create an API Token.
