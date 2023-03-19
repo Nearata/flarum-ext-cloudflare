@@ -8,15 +8,17 @@ export default class DevelopmentWarningWidget extends DashboardWidget {
   }
 
   content() {
-    return [
-      m(Alert, {
-        type: "warning",
-        dismissible: false,
-        title: app.translator.trans(
-          "nearata-cloudflare.admin.development_mode_widget.title"
-        ),
-        icon: "fas fa-exclamation-triangle",
-      }),
-    ];
+    const title = app.translator.trans(
+      "nearata-cloudflare.admin.development_mode_widget.title"
+    );
+
+    return (
+      <Alert
+        title={title}
+        type="warning"
+        dismissible={false}
+        icon="fas fa-exclamation-triangle"
+      />
+    );
   }
 }
