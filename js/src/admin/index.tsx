@@ -38,7 +38,7 @@ app.initializers.add("nearata-cloudflare", () => {
         url: (
           <Link
             external={true}
-            href="https://developers.cloudflare.com/api/tokens/create"
+            href="https://developers.cloudflare.com/fundamentals/api/get-started/create-token"
           />
         ),
       }),
@@ -59,7 +59,7 @@ app.initializers.add("nearata-cloudflare", () => {
         url: (
           <Link
             external={true}
-            href="https://support.cloudflare.com/hc/en-us/articles/200170056"
+            href="https://developers.cloudflare.com/support/firewall/settings/understanding-the-cloudflare-security-level"
           />
         ),
       }),
@@ -73,7 +73,7 @@ app.initializers.add("nearata-cloudflare", () => {
               url: (
                 <Link
                   external={true}
-                  href="https://support.cloudflare.com/hc/en-us/articles/200168196"
+                  href="https://developers.cloudflare.com/support/speed/optimization-file-size/using-cloudflare-auto-minify/"
                 />
               ),
             })}
@@ -107,7 +107,7 @@ app.initializers.add("nearata-cloudflare", () => {
         url: (
           <Link
             external={true}
-            href="https://api.cloudflare.com/#zone-settings-change-development-mode-setting"
+            href="https://developers.cloudflare.com/api/operations/zone-settings-change-development-mode-setting"
           />
         ),
       }),
