@@ -5,7 +5,7 @@ namespace Nearata\Cloudflare;
 use Flarum\Foundation\ValidationException;
 use Illuminate\Http\Client\Factory;
 
-class Utils
+class Helpers
 {
     public static function findZone(string $token = null, string $host): ?string
     {
@@ -20,7 +20,7 @@ class Utils
 
         $zone = $response->collect('result')
             ->filter(function ($item) use ($host) {
-                return $item['name'] == "nearata.com";
+                return $item['name'] == $host;
             })
             ->first();
 

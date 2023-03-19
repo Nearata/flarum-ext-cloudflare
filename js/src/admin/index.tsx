@@ -22,7 +22,7 @@ app.initializers.add("nearata-cloudflare", () => {
     if (developmentMode === "1") {
       items.add(
         "nearataCloudflareDevelopment",
-        DevelopmentWarningWidget.component(),
+        <DevelopmentWarningWidget />,
         100
       );
     }

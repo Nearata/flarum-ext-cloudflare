@@ -5,7 +5,7 @@ namespace Nearata\Cloudflare\Api\Controller;
 use Flarum\Http\RequestUtil;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Laminas\Diactoros\Response\EmptyResponse;
-use Nearata\Cloudflare\Utils;
+use Nearata\Cloudflare\Helpers;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -27,7 +27,7 @@ class RefreshZoneController implements RequestHandlerInterface
 
         $host = $request->getUri()->getHost();
 
-        $zoneId = Utils::findZone(null, $host);
+        $zoneId = Helpers::findZone(null, $host);
 
         $this->settings->set('nearata-cloudflare.zone-id', $zoneId);
 

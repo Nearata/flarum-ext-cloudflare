@@ -44,7 +44,7 @@ class CheckDevelopmentMode implements MiddlewareInterface
 
             if ($value === 'off') {
                 $this->settings->set('nearata-cloudflare.development-mode', false);
-                $this->settings->set('nearata-cloudflare.development-mode-time', null);
+                $this->settings->set('nearata-cloudflare.development-mode-time', 0);
             }
         }
 

@@ -10,14 +10,21 @@ use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
-use Nearata\Cloudflare\Utils;
+use Nearata\Cloudflare\Helpers;
 
 class SettingsSavingListener
 {
     protected $config;
     protected $settings;
 
+    /**
+     * @var string
+     */
     protected $token;
+
+    /**
+     * @var string
+     */
     protected $zone;
 
     public function __construct(Config $config, SettingsRepositoryInterface $settings)
@@ -35,28 +42,28 @@ class SettingsSavingListener
         $minifyJs = Arr::get($event->settings, 'nearata-cloudflare.minify-js');
         $developmentMode = Arr::get($event->settings, 'nearata-cloudflare.development-mode');
 
-        if (!empty($token)) {
+        if (isset($token)) {
             $this->token = $token;
             $this->updateApiToken();
         }
 
-        if (!empty($securityLevel)) {
+        if (isset($securityLevel)) {
             $this->updateSecurityLevel($securityLevel);
         }
 
-        if (!empty($minifyCss)) {
+        if (isset($minifyCss)) {
             $this->autoMinify('css', $minifyCss);
         }
 
-        if (!empty($minifyHtml)) {
+        if (isset($minifyHtml)) {
             $this->autoMinify('html', $minifyHtml);
         }
 
-        if (!empty($minifyJs)) {
+        if (isset($minifyJs)) {
             $this->autoMinify('js', $minifyJs);
         }
 
-        if (!empty($developmentMode)) {
+        if (isset($developmentMode)) {
             $this->updateDevelopmentMode($developmentMode);
         }
     }
@@ -71,7 +78,7 @@ class SettingsSavingListener
             throw new ValidationException(['cloudflare' => 'Invalid API Key']);
         }
 
-        $this->zone = Utils::findZone($this->token, $this->config->url()->getHost());
+        $this->zone = Helpers::findZone($this->token, $this->config->url()->getHost());
 
         $this->settings->set('nearata-cloudflare.zone-id', $this->zone);
     }
@@ -87,22 +94,20 @@ class SettingsSavingListener
 
     private function autoMinify(string $key, bool $value): void
     {
-        $value = $value ? 'on' : 'off';
-
         /** @var Response */
         $response = Factory::cloudflareZoned($this->token, $this->zone)
-            ->patch('/settings/minify', [$key => $value]);
+            ->patch('/settings/minify', [
+                'value' => [$key => $value ? 'on' : 'off']
+            ]);
 
         $response->onError([$this, 'onError']);
     }
 
     private function updateDevelopmentMode(bool $value): void
     {
-        $value = $value ? 'on' : 'off';
-
         /** @var Response */
         $response = Factory::cloudflareZoned($this->token, $this->zone)
-            ->patch('/settings/development_mode', ['value' => $value]);
+            ->patch('/settings/development_mode', ['value' => $value ? 'on' : 'off']);
 
         $response->onError([$this, 'onError']);
 
