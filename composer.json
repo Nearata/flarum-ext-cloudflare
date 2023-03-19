@@ -8,7 +8,7 @@
     "type": "flarum-extension",
     "license": "Unlicense",
     "require": {
-        "flarum/core": "^1.0",
+        "flarum/core": "^1.7.0",
         "illuminate/http": "^8.0"
     },
     "authors": [
@@ -37,7 +37,5 @@
                 "backgroundColor": "#ff6633"
             }
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

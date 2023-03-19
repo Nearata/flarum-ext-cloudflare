@@ -121,8 +121,7 @@ class SettingsSavingListener
         $response->onError([$this, 'onError']);
 
         if ($value) {
-            $now = Carbon::now()->getTimestamp();
-            $this->settings->set('nearata-cloudflare.development-mode-time', $now);
+            $this->settings->set('nearata-cloudflare.development-mode-time', Carbon::now()->getTimestamp());
         }
     }
 

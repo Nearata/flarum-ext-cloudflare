@@ -1,6 +1,6 @@
 # Cloudflare
 
-> A [Flarum](http://flarum.org) extension. Cloudflare integration.
+> Cloudflare integration.
 
 ## Install
 
@@ -16,7 +16,3 @@ Disable the extension, click purge then execute:
 composer remove nearata/flarum-ext-cloudflare
 php flarum cache:clear
 ```
-
-## Links
-
-- [Packagist](https://packagist.org/packages/nearata/flarum-ext-cloudflare)

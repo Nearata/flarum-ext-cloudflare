@@ -29,5 +29,11 @@ return [
         ->register(CloudflareServiceProvider::class),
 
     (new Extend\Middleware('admin'))
-        ->add(CheckDevelopmentMode::class)
+        ->add(CheckDevelopmentMode::class),
+
+    (new Extend\Settings)
+        ->default('nearata-cloudflare.development-mode', false)
+        ->default('nearata-cloudflare.development-mode-time', 0)
+        ->default('nearata-cloudflare.zone-id', '')
+        ->default('nearata-cloudflare.api-key', '')
 ];

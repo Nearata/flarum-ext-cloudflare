@@ -23,19 +23,15 @@ class CheckDevelopmentMode implements MiddlewareInterface
     {
         $handle = $handler->handle($request);
 
-        $developmentMode = $this->settings->get('nearata-cloudflare.development-mode');
+        $developmentMode = (bool) $this->settings->get('nearata-cloudflare.development-mode');
 
-        if ($developmentMode !== '1') {
+        if (!$developmentMode) {
             return $handle;
         }
 
-        $developmentModeTime = $this->settings->get('nearata-cloudflare.development-mode-time');
+        $time = $this->settings->get('nearata-cloudflare.development-mode-time');
 
-        $old = Carbon::createFromTimestamp($developmentModeTime);
-
-        $now = Carbon::now();
-
-        if ($now->diffInHours($old) < 3) {
+        if (Carbon::now()->diffInHours(Carbon::createFromTimestamp($time)) < 3) {
             return $handle;
         }
 
@@ -47,8 +43,8 @@ class CheckDevelopmentMode implements MiddlewareInterface
             $value = $response->collect('result')->get('value');
 
             if ($value === 'off') {
-                $this->settings->set('nearata-cloudflare.development-mode', '0');
-                $this->settings->set('nearata-cloudflare.development-mode-time', '');
+                $this->settings->set('nearata-cloudflare.development-mode', false);
+                $this->settings->set('nearata-cloudflare.development-mode-time', null);
             }
         }
 
