@@ -7,6 +7,7 @@ use Flarum\Foundation\Event\ClearingCache;
 use Flarum\Settings\Event\Saving as SettingsSaving;
 use Nearata\Cloudflare\Admin\Middleware\CheckDevelopmentMode;
 use Nearata\Cloudflare\Api\Controller\RefreshZoneController;
+use Nearata\Cloudflare\Filesystem\R2Driver;
 use Nearata\Cloudflare\Listener\ClearingCacheListener;
 use Nearata\Cloudflare\Listener\SettingsSavingListener;
 use Nearata\Cloudflare\Provider\CloudflareServiceProvider;
@@ -36,4 +37,12 @@ return [
         ->default('nearata-cloudflare.development-mode-time', 0)
         ->default('nearata-cloudflare.zone-id', '')
         ->default('nearata-cloudflare.api-key', '')
+        ->default('nearata-cloudflare.r2-bucket-name', '')
+        ->default('nearata-cloudflare.r2-access-key-id', '')
+        ->default('nearata-cloudflare.r2-access-key-secret', '')
+        ->default('nearata-cloudflare.r2-s3-api', '')
+        ->default('nearata-cloudflare.r2-public-domain', ''),
+
+    (new Extend\Filesystem)
+        ->driver('r2', R2Driver::class),
 ];

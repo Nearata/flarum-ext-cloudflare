@@ -12,6 +12,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class RefreshZoneController implements RequestHandlerInterface
 {
+    /**
+     * @var SettingsRepositoryInterface
+     */
     protected $settings;
 
     public function __construct(SettingsRepositoryInterface $settings)

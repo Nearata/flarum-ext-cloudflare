@@ -14,7 +14,14 @@ use Nearata\Cloudflare\Helpers;
 
 class SettingsSavingListener
 {
+    /**
+     * @var Config
+     */
     protected $config;
+
+    /**
+     * @var SettingsRepositoryInterface
+     */
     protected $settings;
 
     /**
@@ -97,7 +104,7 @@ class SettingsSavingListener
         /** @var Response */
         $response = Factory::cloudflareZoned($this->token, $this->zone)
             ->patch('/settings/minify', [
-                'value' => [$key => $value ? 'on' : 'off']
+                'value' => [$key => $value ? 'on' : 'off'],
             ]);
 
         $response->onError([$this, 'onError']);

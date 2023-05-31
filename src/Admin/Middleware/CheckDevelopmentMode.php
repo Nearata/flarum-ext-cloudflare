@@ -25,7 +25,7 @@ class CheckDevelopmentMode implements MiddlewareInterface
 
         $developmentMode = (bool) $this->settings->get('nearata-cloudflare.development-mode');
 
-        if (!$developmentMode) {
+        if (! $developmentMode) {
             return $handle;
         }
 

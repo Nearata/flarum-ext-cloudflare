@@ -155,5 +155,33 @@ app.initializers.add("nearata-cloudflare", () => {
           <div class="helpText">{trans("refresh_zone_help")}</div>
         </div>
       );
+    })
+    .registerSetting(function () {
+      return <h2>{trans("r2.section_title")}</h2>;
+    })
+    .registerSetting({
+      setting: "nearata-cloudflare.r2-bucket-name",
+      type: "text",
+      label: trans("r2.bucket_name"),
+    })
+    .registerSetting({
+      setting: "nearata-cloudflare.r2-access-key-id",
+      type: "password",
+      label: trans("r2.access_key_id"),
+    })
+    .registerSetting({
+      setting: "nearata-cloudflare.r2-access-key-secret",
+      type: "password",
+      label: trans("r2.access_key_secret"),
+    })
+    .registerSetting({
+      setting: "nearata-cloudflare.r2-public-domain",
+      type: "text",
+      label: trans("r2.public_domain"),
+    })
+    .registerSetting({
+      setting: "nearata-cloudflare.r2-s3-api",
+      type: "text",
+      label: trans("r2.s3_api"),
     });
 });
