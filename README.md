@@ -1,5 +1,9 @@
 # Cloudflare
 
+[![license](https://img.shields.io/github/license/Nearata/flarum-ext-cloudflare?style=flat)](https://github.com/Nearata/flarum-ext-cloudflare/blob/main/UNLICENSE)
+[![packagist](https://img.shields.io/packagist/v/nearata/flarum-ext-cloudflare?style=flat)](https://packagist.org/packages/nearata/flarum-ext-cloudflare)
+[![changelog](https://img.shields.io/github/release-date/nearata/flarum-ext-cloudflare?label=last%20release%20date)](https://github.com/Nearata/flarum-ext-cloudflare/blob/main/CHANGELOG.md)
+
 > Cloudflare integration.
 
 ## Install
