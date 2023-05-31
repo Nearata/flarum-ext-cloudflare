@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2023-03-19
 
-- Ability to clear Cloudflare cache after forum cache is cleared
-- Ability to modify Cloudflare Security Level
-- Ability to toggle auto minify for css, html and js
-- Ability to toggle Development Mode
+- feat: clear Cloudflare cache after forum cache is cleared
+- feat: modify Cloudflare Security Level
+- feat: toggle auto minify for css, html and js
+- feat: toggle Development Mode
