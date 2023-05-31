@@ -6,6 +6,10 @@
 
 > Cloudflare integration.
 
+## Screenshots
+
+See the [screenshots](screenshots) subfolder.
+
 ## Install
 
 ```sh
